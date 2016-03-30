@@ -10,7 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     var alertController: UIAlertController!
+
+    var items: [ItemModel]!
     
     // MARK: - VC life cycle
     
@@ -48,7 +52,19 @@ class ViewController: UIViewController {
     // MARK: - Click add button
     
     @IBAction func add() {
-        
+        alertController = UIAlertController(title: "New item", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addTextFieldWithConfigurationHandler { textField in
+            textField.placeholder = "Name"
+        }
+        alertController.addTextFieldWithConfigurationHandler { textField in
+            textField.placeholder = "MM/DD/YYYY"
+            textField.keyboardType = .NumberPad
+        }
+        alertController.addAction(UIAlertAction(title: "Submit", style: UIAlertActionStyle.Default, handler: { _ in
+            print("submit")
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

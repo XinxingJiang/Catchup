@@ -1,5 +1,5 @@
 //
-//  CatchUpItem.swift
+//  ItemModel.swift
 //  Catchup
 //
 //  Created by Xinxing Jiang on 3/30/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CatchUpItem {
+class ItemModel {
     let name: String!
     var date: NSDate!
     

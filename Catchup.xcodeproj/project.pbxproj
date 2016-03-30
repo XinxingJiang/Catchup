@@ -15,7 +15,7 @@
 		B710D1A71CAB64AA00ED36B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B710D1A51CAB64AA00ED36B9 /* LaunchScreen.storyboard */; };
 		B710D1B21CAB64AA00ED36B9 /* CatchupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1B11CAB64AA00ED36B9 /* CatchupTests.swift */; };
 		B710D1BD1CAB64AA00ED36B9 /* CatchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1BC1CAB64AA00ED36B9 /* CatchupUITests.swift */; };
-		B710D1CC1CAC1E7500ED36B9 /* CatchUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1CB1CAC1E7500ED36B9 /* CatchUpItem.swift */; };
+		B710D1CC1CAC1E7500ED36B9 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		B710D1B81CAB64AA00ED36B9 /* CatchupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B710D1BC1CAB64AA00ED36B9 /* CatchupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupUITests.swift; sourceTree = "<group>"; };
 		B710D1BE1CAB64AA00ED36B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B710D1CB1CAC1E7500ED36B9 /* CatchUpItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchUpItem.swift; sourceTree = "<group>"; };
+		B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +103,7 @@
 			children = (
 				B710D1CA1CAB64B700ED36B9 /* SupportingFiles */,
 				B710D19B1CAB64AA00ED36B9 /* ViewController.swift */,
+				B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */,
 				B710D19D1CAB64AA00ED36B9 /* Main.storyboard */,
 			);
 			path = Catchup;
@@ -134,7 +135,6 @@
 				B710D1A51CAB64AA00ED36B9 /* LaunchScreen.storyboard */,
 				B710D1A81CAB64AA00ED36B9 /* Info.plist */,
 				B710D1A01CAB64AA00ED36B9 /* Catchup.xcdatamodeld */,
-				B710D1CB1CAC1E7500ED36B9 /* CatchUpItem.swift */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 				B710D19C1CAB64AA00ED36B9 /* ViewController.swift in Sources */,
 				B710D19A1CAB64AA00ED36B9 /* AppDelegate.swift in Sources */,
 				B710D1A21CAB64AA00ED36B9 /* Catchup.xcdatamodeld in Sources */,
-				B710D1CC1CAC1E7500ED36B9 /* CatchUpItem.swift in Sources */,
+				B710D1CC1CAC1E7500ED36B9 /* ItemModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
