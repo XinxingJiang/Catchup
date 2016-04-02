@@ -80,8 +80,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - Alert controller delegate
-    
     // MARK: - Text field delegate
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -117,12 +115,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func submit() {
-        
+
     }
     
     func isDateValid(date date: String) -> Bool {
-        // TO DO
-        return !date.isEmpty
+        let components = date.componentsSeparatedByString("/")
+        if components.count != 3 {
+            return false
+        }
+        let month = Int(components[0])
+        let day = Int(components[1])
+        let year = Int(components[2])
+        if month == nil || day == nil || year == nil {
+            return false
+        }
+        return DateUtil.isDateValid(month: month!, day: day!, year: year!)
     }
 }
 
