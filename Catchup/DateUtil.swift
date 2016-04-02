@@ -36,7 +36,7 @@ class DateUtil {
     }
     
     private class func isYearInRange(year year: Int) -> Bool {
-        return year > 0 && year < 9999
+        return year >= 1000 && year < 9999
     }
     
     private class func isLeapYear(year year: Int) -> Bool {
