@@ -17,16 +17,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var nameTextField: UITextField!
     var dateTextField: UITextField!
 
-    var items: [ItemModel]!
+    var items: [[String: String]]! {
+        didSet {
+            DefaultsUtil.setUserDefaults(key: "items", value: items)
+        }
+    }
     
     // MARK: - VC life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        items = DefaultsUtil.getUserDefaults(key: "items") as? [[String: String]] ?? [[String: String]]()
     }
 
-    // MARK: - Click sort by name button
+    // MARK: - Sort by name button action
     
     @IBAction func sortByName() {
         alertController = UIAlertController()
@@ -39,7 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
 
-    // MARK: - Click sort by date button
+    // MARK: - Sort by date button action
     
     @IBAction func sortByDate() {
         alertController = UIAlertController()
@@ -52,7 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - Click add button
+    // MARK: - Add button action
     
     @IBAction func add() {
         alertController = UIAlertController(title: "New item", message: "", preferredStyle: UIAlertControllerStyle.Alert)
@@ -65,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         alertController.addTextFieldWithConfigurationHandler { textField in
             self.dateTextField = textField
-            textField.placeholder = "MM/DD/YYYY"
+            textField.placeholder = "YYYY/MM/DD"
             textField.keyboardType = .NumberPad
             textField.delegate = self
         }
@@ -80,6 +84,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
+    // MARK: - Submit button action
+    
+    private func submit() {
+        let name = nameTextField.text!
+        let date = dateTextField.text!
+        // if name is existed, update
+        for var item in items {
+            if name == item["name"]! {
+                item["date"] = date
+                return
+            }
+        }
+        // otherwise, insert
+        items.append(["name": name, "date": date])
+    }
+    
     // MARK: - Text field delegate
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -88,48 +108,47 @@ class ViewController: UIViewController, UITextFieldDelegate {
             submitAction.enabled = !stringAfterEdit.isEmpty && isDateValid(date: dateTextField.text!)
         }
         if textField == dateTextField {
+            let stringLengthBeforeEdit = textField.text!.characters.count
+            let stringLengthAfterEdit = stringAfterEdit.characters.count
+
+            // length upper limit
+            if stringLengthAfterEdit > 10 {
+                return false
+            }
+
             submitAction.enabled = !nameTextField.text!.isEmpty && isDateValid(date: stringAfterEdit)
             
             // lazily insert or delete seperator /
-            let stringLengthBeforeEdit = textField.text!.characters.count
-            let stringLengthAfterEdit = stringAfterEdit.characters.count
             
             // insert seperator
-            if (stringLengthAfterEdit == 3 || stringLengthAfterEdit == 6) && stringLengthAfterEdit > stringLengthBeforeEdit {
+            if (stringLengthAfterEdit == 5 || stringLengthAfterEdit == 8) && stringLengthAfterEdit > stringLengthBeforeEdit {
                 textField.text = textField.text! + "/" + string
                 return false
             }
             
             // delete seperator
-            if (stringLengthAfterEdit == 2 || stringLengthAfterEdit == 5) && stringLengthAfterEdit < stringLengthBeforeEdit {
+            if (stringLengthAfterEdit == 4 || stringLengthAfterEdit == 7) && stringLengthAfterEdit < stringLengthBeforeEdit {
                 textField.text = stringAfterEdit.substringToIndex(stringAfterEdit.endIndex.advancedBy(-1))
-                return false
-            }
-            
-            // length upper limit
-            if stringLengthAfterEdit > 10 {
                 return false
             }
         }
         return true
     }
     
-    func submit() {
-
-    }
+    // MARK: - Date checker
     
-    func isDateValid(date date: String) -> Bool {
+    private func isDateValid(date date: String) -> Bool {
         let components = date.componentsSeparatedByString("/")
         if components.count != 3 {
             return false
         }
-        let month = Int(components[0])
-        let day = Int(components[1])
-        let year = Int(components[2])
+        let year = Int(components[0])
+        let month = Int(components[1])
+        let day = Int(components[2])
         if month == nil || day == nil || year == nil {
             return false
         }
-        return DateUtil.isDateValid(month: month!, day: day!, year: year!)
+        return DateUtil.isDateValid(year: year!, month: month!, day: day!)
     }
 }
 
