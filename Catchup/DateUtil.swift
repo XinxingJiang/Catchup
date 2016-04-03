@@ -8,10 +8,14 @@
 import Foundation
 
 class DateUtil {
-    class func isDateValid(month month: Int, day: Int, year: Int) -> Bool {
-        return isMonthInRange(month: month) && isDayInRange(month: month, day: day, year: year) && isYearInRange(year: year)
+    class func isDateValid(year year: Int, month: Int, day: Int) -> Bool {
+        return isYearInRange(year: year) && isMonthInRange(month: month) && isDayInRange(month: month, day: day, year: year)
     }
-    
+
+    private class func isYearInRange(year year: Int) -> Bool {
+        return year >= 1000 && year < 9999
+    }
+
     private class func isMonthInRange(month month: Int) -> Bool {
         return month >= 1 && month <= 12
     }
@@ -33,10 +37,6 @@ class DateUtil {
         default:
             return false
         }
-    }
-    
-    private class func isYearInRange(year year: Int) -> Bool {
-        return year >= 1000 && year < 9999
     }
     
     private class func isLeapYear(year year: Int) -> Bool {
