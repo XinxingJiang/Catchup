@@ -10,13 +10,19 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Fields
     
     var alertController: UIAlertController!
     var submitAction: UIAlertAction!
     var nameTextField: UITextField!
     var dateTextField: UITextField!
 
+    // MARK: - Model
+    
     var items: [[String: String]]! {
         didSet {
             tableView.reloadData()
@@ -41,10 +47,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBAction func sortByName() {
         alertController = UIAlertController()
         alertController.addAction(UIAlertAction(title: "A to Z", style: UIAlertActionStyle.Default, handler: { _ in
-            print("A to Z")
+            self.items.sortInPlace{$0["name"] < $1["name"]}
         }))
         alertController.addAction(UIAlertAction(title: "Z to A", style: UIAlertActionStyle.Default, handler: { _ in
-            print("Z to A")
+            self.items.sortInPlace{$0["name"] > $1["name"]}
         }))
         presentViewController(alertController, animated: true, completion: nil)
     }
@@ -54,10 +60,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBAction func sortByDate() {
         alertController = UIAlertController()
         alertController.addAction(UIAlertAction(title: "Most recent", style: UIAlertActionStyle.Default, handler: { _ in
-            print("most recent")
+            self.items.sortInPlace{$0["date"] > $1["date"]}
+            print(self.items)
         }))
         alertController.addAction(UIAlertAction(title: "Least recent", style: UIAlertActionStyle.Default, handler: { _ in
-            print("least recent")
+            self.items.sortInPlace{$0["date"] < $1["date"]}
+            print(self.items)
         }))
         presentViewController(alertController, animated: true, completion: nil)
     }
