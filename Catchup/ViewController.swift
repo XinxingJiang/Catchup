@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     var items: [[String: String]]! {
         didSet {
+            tableView.reloadData()
             DefaultsUtil.setUserDefaults(key: "items", value: items)
         }
     }
@@ -28,6 +29,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         items = DefaultsUtil.getUserDefaults(key: "items") as? [[String: String]] ?? [[String: String]]()
+
+        // setup table view
+        tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     // MARK: - Sort by name button action
@@ -90,9 +96,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let name = nameTextField.text!
         let date = dateTextField.text!
         // if name is existed, update
-        for var item in items {
-            if name == item["name"]! {
-                item["date"] = date
+        for i in 0..<items.count {
+            if items[i]["name"] == name {
+                items[i]["date"] = date
                 return
             }
         }
@@ -133,6 +139,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         return true
+    }
+    
+    // MARK: - Table view data source
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+        cell.item = items[indexPath.row]
+        return cell
     }
     
     // MARK: - Date checker
