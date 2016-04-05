@@ -89,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				B710D1981CAB64AA00ED36B9 /* Catchup */,
+				B710D1CA1CAB64B700ED36B9 /* SupportingFiles */,
 				B710D1B01CAB64AA00ED36B9 /* CatchupTests */,
 				B710D1BB1CAB64AA00ED36B9 /* CatchupUITests */,
 				B710D1971CAB64AA00ED36B9 /* Products */,
@@ -108,13 +109,10 @@
 		B710D1981CAB64AA00ED36B9 /* Catchup */ = {
 			isa = PBXGroup;
 			children = (
-				B710D1CA1CAB64B700ED36B9 /* SupportingFiles */,
-				B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */,
-				B748FED61CAFD2ED0035A4E3 /* DefaultsUtil.swift */,
+				B77745CC1CB4842B005DEBC5 /* Utils */,
 				B710D19D1CAB64AA00ED36B9 /* Main.storyboard */,
-				B710D19B1CAB64AA00ED36B9 /* ViewController.swift */,
-				B71EAF671CB3385400434730 /* TableViewController.swift */,
-				B71EAF651CB1CFCA00434730 /* TableViewCell.swift */,
+				B77745CD1CB4843D005DEBC5 /* Controllers */,
+				B77745CE1CB4844D005DEBC5 /* Views */,
 			);
 			path = Catchup;
 			sourceTree = "<group>";
@@ -147,6 +145,33 @@
 				B710D1A01CAB64AA00ED36B9 /* Catchup.xcdatamodeld */,
 			);
 			name = SupportingFiles;
+			path = Catchup;
+			sourceTree = "<group>";
+		};
+		B77745CC1CB4842B005DEBC5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */,
+				B748FED61CAFD2ED0035A4E3 /* DefaultsUtil.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		B77745CD1CB4843D005DEBC5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B71EAF671CB3385400434730 /* TableViewController.swift */,
+				B710D19B1CAB64AA00ED36B9 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B77745CE1CB4844D005DEBC5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B71EAF651CB1CFCA00434730 /* TableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
