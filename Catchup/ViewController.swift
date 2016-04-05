@@ -8,24 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
-
-    // MARK: - Outlets
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+class ViewController: UIViewController, UITextFieldDelegate {
+        
     // MARK: - Fields
     
     var alertController: UIAlertController!
     var submitAction: UIAlertAction!
     var nameTextField: UITextField!
     var dateTextField: UITextField!
+    
+    var tvc: TableViewController!
 
     // MARK: - Model
     
     var items: [[String: String]]! {
         didSet {
-            tableView.reloadData()
+            tvc.tableView.reloadData()
             DefaultsUtil.setUserDefaults(key: "items", value: items)
         }
     }
@@ -35,11 +33,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         items = DefaultsUtil.getUserDefaults(key: "items") as? [[String: String]] ?? [[String: String]]()
-
-        // setup table view
-        tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.dataSource = self
-        tableView.delegate = self
     }
 
     // MARK: - Sort by name button action
@@ -61,11 +54,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         alertController = UIAlertController()
         alertController.addAction(UIAlertAction(title: "Most recent", style: UIAlertActionStyle.Default, handler: { _ in
             self.items.sortInPlace{$0["date"] > $1["date"]}
-            print(self.items)
         }))
         alertController.addAction(UIAlertAction(title: "Least recent", style: UIAlertActionStyle.Default, handler: { _ in
             self.items.sortInPlace{$0["date"] < $1["date"]}
-            print(self.items)
         }))
         presentViewController(alertController, animated: true, completion: nil)
     }
@@ -149,18 +140,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         return true
     }
     
-    // MARK: - Table view data source
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-        cell.item = items[indexPath.row]
-        return cell
-    }
-    
     // MARK: - Date checker
     
     private func isDateValid(date date: String) -> Bool {
@@ -176,5 +155,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
         return DateUtil.isDateValid(year: year!, month: month!, day: day!)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "embed" {
+                tvc = segue.destinationViewController as! TableViewController
+            }
+        }
+    }
 }
-
