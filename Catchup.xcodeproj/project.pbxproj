@@ -15,7 +15,11 @@
 		B710D1A71CAB64AA00ED36B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B710D1A51CAB64AA00ED36B9 /* LaunchScreen.storyboard */; };
 		B710D1B21CAB64AA00ED36B9 /* CatchupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1B11CAB64AA00ED36B9 /* CatchupTests.swift */; };
 		B710D1BD1CAB64AA00ED36B9 /* CatchupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1BC1CAB64AA00ED36B9 /* CatchupUITests.swift */; };
-		B710D1CC1CAC1E7500ED36B9 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */; };
+		B710D1CE1CAF47AE00ED36B9 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */; };
+		B710D1CF1CAF4B8C00ED36B9 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */; };
+		B71EAF661CB1CFCA00434730 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EAF651CB1CFCA00434730 /* TableViewCell.swift */; };
+		B71EAF681CB3385400434730 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EAF671CB3385400434730 /* TableViewController.swift */; };
+		B748FED71CAFD2ED0035A4E3 /* DefaultsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748FED61CAFD2ED0035A4E3 /* DefaultsUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +54,10 @@
 		B710D1B81CAB64AA00ED36B9 /* CatchupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B710D1BC1CAB64AA00ED36B9 /* CatchupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchupUITests.swift; sourceTree = "<group>"; };
 		B710D1BE1CAB64AA00ED36B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		B71EAF651CB1CFCA00434730 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B71EAF671CB3385400434730 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B748FED61CAFD2ED0035A4E3 /* DefaultsUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +109,12 @@
 			isa = PBXGroup;
 			children = (
 				B710D1CA1CAB64B700ED36B9 /* SupportingFiles */,
-				B710D19B1CAB64AA00ED36B9 /* ViewController.swift */,
-				B710D1CB1CAC1E7500ED36B9 /* ItemModel.swift */,
+				B710D1CD1CAF47AE00ED36B9 /* DateUtil.swift */,
+				B748FED61CAFD2ED0035A4E3 /* DefaultsUtil.swift */,
 				B710D19D1CAB64AA00ED36B9 /* Main.storyboard */,
+				B710D19B1CAB64AA00ED36B9 /* ViewController.swift */,
+				B71EAF671CB3385400434730 /* TableViewController.swift */,
+				B71EAF651CB1CFCA00434730 /* TableViewCell.swift */,
 			);
 			path = Catchup;
 			sourceTree = "<group>";
@@ -271,9 +281,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B710D19C1CAB64AA00ED36B9 /* ViewController.swift in Sources */,
+				B71EAF681CB3385400434730 /* TableViewController.swift in Sources */,
+				B710D1CE1CAF47AE00ED36B9 /* DateUtil.swift in Sources */,
 				B710D19A1CAB64AA00ED36B9 /* AppDelegate.swift in Sources */,
+				B71EAF661CB1CFCA00434730 /* TableViewCell.swift in Sources */,
 				B710D1A21CAB64AA00ED36B9 /* Catchup.xcdatamodeld in Sources */,
-				B710D1CC1CAC1E7500ED36B9 /* ItemModel.swift in Sources */,
+				B748FED71CAFD2ED0035A4E3 /* DefaultsUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B710D1B21CAB64AA00ED36B9 /* CatchupTests.swift in Sources */,
+				B710D1CF1CAF4B8C00ED36B9 /* DateUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +512,7 @@
 				B710D1C31CAB64AA00ED36B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B710D1C41CAB64AA00ED36B9 /* Build configuration list for PBXNativeTarget "CatchupTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +521,7 @@
 				B710D1C61CAB64AA00ED36B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B710D1C71CAB64AA00ED36B9 /* Build configuration list for PBXNativeTarget "CatchupUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +530,7 @@
 				B710D1C91CAB64AA00ED36B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
