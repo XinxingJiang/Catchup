@@ -118,9 +118,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="containerView" destination="1Iw-Hg-KJr" id="3Z1-aS-89f"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
